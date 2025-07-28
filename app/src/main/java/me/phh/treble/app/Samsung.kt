@@ -144,7 +144,7 @@ val telephonyCallback: TelephonyCallback = object : TelephonyCallback(),
     @RequiresApi(Build.VERSION_CODES.S)
     override fun startup(ctxt: Context) {
         context = ctxt
-        if (!SamsungSettings.enabled()) return
+        if (!SamsungSettings.enabled(ctxt)) return
 
         val handler = Handler(HandlerThread("SamsungThread").apply { start()}.looper)
 
@@ -198,7 +198,7 @@ val telephonyCallback: TelephonyCallback = object : TelephonyCallback(),
 
         var self: Samsung? = null
         override fun startup(ctxt: Context) {
-            if (!SamsungSettings.enabled()) return
+            if (!SamsungSettings.enabled(ctxt)) return
             self = Samsung()
             self!!.startup(ctxt)
         }

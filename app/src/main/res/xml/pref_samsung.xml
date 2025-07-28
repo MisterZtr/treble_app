@@ -15,6 +15,11 @@
             android:key="key_samsung_disable_back_mic"
             android:title="@string/disable_backmic"
             android:summary="@string/disablebackmic_summary" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_samsung_alternate_audio_policy"
+            android:title="Use alternate audio policy" />
     </PreferenceCategory>
 
     <PreferenceCategory

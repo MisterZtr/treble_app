@@ -24,6 +24,7 @@ object SamsungSettings : Settings {
     val wirelessChargingTransmit = "key_samsung_wireless_charging_transmit"
     val doubleTapToWake = "key_samsung_double_tap_to_wake"
     val extraSensors = "key_samsung_extra_sensors"
+    val alternateAudioPolicy = "key_samsung_alternate_audio_policy"
     val colorspace = "key_samsung_colorspace"
     val brokenFingerprint = "key_samsung_broken_fingerprint"
     val backlightMultiplier = "key_samsung_backlight_multiplier"
