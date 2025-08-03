@@ -36,15 +36,18 @@
   </array>
 
   <array name="pref_display_sf_blur_algorithm">
-    <item>"Disabled"</item>
-    <item>"Gaussian"</item>
-    <item>"Kawase (Default)"</item>
+    <item>Disabled</item>
+    <item>Gaussian</item>
+    <item>Kawase (Default)</item>
+    <item>"kawase2"</item>
   </array>
 
   <array name="pref_display_sf_blur_algorithm_values">
     <item>"disabled"</item>
     <item>"gaussian"</item>
     <item>"kawase"</item>
+    <item>"kawase2"</item>
+
   </array>
 
   <array name="pref_display_sf_renderengine_backend">

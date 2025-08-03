@@ -59,12 +59,13 @@
             android:key="key_display_sf_renderengine_backend"
             android:title="@string/renderengine" />
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:layout="@layout/preference_switch_custom"
-            android:key="key_display_sf_blur_enabled"
-            android:title="@string/blureffects"
-            android:summary="@string/blureffects_summary" />
+        <ListPreference
+            android:layout="@layout/preference_list_custom"
+            android:defaultValue="kawase"
+            android:entries="@array/pref_display_sf_blur_algorithm"
+            android:entryValues="@array/pref_display_sf_blur_algorithm_values"
+            android:key="key_display_sf_blur_algorithm"
+            android:title="Blur" />>
         </PreferenceCategory>
 
     <PreferenceCategory
