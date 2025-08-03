@@ -5,6 +5,20 @@
         android:selectable="false"
         android:enabled="false" />
 
+
+    <PreferenceCategory
+        android:title="SYSTEM UDPATES"
+        android:layout="@layout/preference_category_custom">
+        <Preference android:title="System updates"
+            android:id="@+id/updater"
+            android:summary="OTA is here"
+            android:icon="@drawable/ota" >
+            <intent
+                android:action="android.settings.SYSTEM_UPDATE_SETTINGS"
+                android:targetClass=".UpdaterActivity" />
+        </Preference>
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:title="@@string/title_group"
         android:layout="@layout/preference_category_custom">

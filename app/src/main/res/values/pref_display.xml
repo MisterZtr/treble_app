@@ -66,4 +66,19 @@
     <item>"skiavkthreaded"</item>
   </array>
 
+  <array name="pref_display_max_events_per_sec">
+    <item>60 Hz</item>
+    <item>90 Hz</item>
+    <item>120 Hz</item>
+    <item>144 Hz</item>
+  </array>
+
+  <array name="pref_display_max_events_per_sec_values">
+    <item>60</item>
+    <item>90</item>
+    <item>120</item>
+    <item>144</item>
+  </array>
+
+
 </resources>

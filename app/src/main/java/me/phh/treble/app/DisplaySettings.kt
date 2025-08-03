@@ -23,6 +23,7 @@ object DisplaySettings : Settings {
     val dynamicFps = "key_display_dynamic_fps"
     val noHwcomposer = "key_display_no_hwcomposer"
     val aod = "key_display_aod"
+    val maxEventsPerSec = "key_max_events_per_sec"
     val disableSfGlBackpressure = "key_display_disable_sf_gl_backpressure"
     val disableSfHwcBackpressure = "key_display_disable_sf_hwc_backpressure"
     val sfBlurAlgorithm = "key_display_sf_blur_algorithm"
@@ -46,6 +47,7 @@ class DisplaySettingsFragment : PreferenceFragment() {
 
         SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.displayFps)!!)
         SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.sfBlurAlgorithm)!!)
+        SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.maxEventsPerSec)!!)
         SettingsActivity.bindPreferenceSummaryToValue(findPreference(DisplaySettings.sfRenderEngineBackend)!!)
 
         val fpsPref = findPreference(DisplaySettings.displayFps) as ListPreference
