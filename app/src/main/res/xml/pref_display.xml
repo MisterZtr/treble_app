@@ -65,7 +65,7 @@
             android:entries="@array/pref_display_sf_blur_algorithm"
             android:entryValues="@array/pref_display_sf_blur_algorithm_values"
             android:key="key_display_sf_blur_algorithm"
-            android:title="Blur Algoritm" />>
+            android:title="Blur Algoritm" />
 
         <ListPreference
             android:key="key_max_events_per_sec"
