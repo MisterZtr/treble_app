@@ -22,6 +22,8 @@
     <item>"Desativado"</item>
     <item>"Gaussiano"</item>
     <item>"Kawase (Padrão)"</item>
+    <item>"Kawase2</item>
+
   </array>
 
   <array name="pref_display_sf_renderengine_backend">
