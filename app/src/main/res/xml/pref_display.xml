@@ -65,16 +65,7 @@
             android:entries="@array/pref_display_sf_blur_algorithm"
             android:entryValues="@array/pref_display_sf_blur_algorithm_values"
             android:key="key_display_sf_blur_algorithm"
-            android:title="Blur Algoritm" />
-
-        <ListPreference
-            android:key="key_max_events_per_sec"
-            android:title="Max Events Per Second"
-            android:defaultValue="60"
-            android:entries="@array/pref_display_max_events_per_sec"
-            android:entryValues="@array/pref_display_max_events_per_sec_values"
-            android:layout="@layout/preference_list_custom" />
-
+            android:title="Blur" />
         </PreferenceCategory>
 
     <PreferenceCategory

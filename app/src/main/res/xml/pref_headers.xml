@@ -9,7 +9,9 @@
     <PreferenceCategory
         android:title="SYSTEM UDPATES"
         android:layout="@layout/preference_category_custom">
-        <Preference android:title="System updates"
+        <Preference
+            android:layout="@layout/preference_custom_head"
+            android:title="System updates"
             android:id="@+id/updater"
             android:summary="OTA is here"
             android:icon="@drawable/ota" >

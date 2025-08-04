@@ -108,10 +108,6 @@ object Display: EntryStartup {
                 val value = sp.getString(key, "kawase")
                 SystemProperties.set("persist.sys.phh.sf.background_blur", value)
             }
-            DisplaySettings.maxEventsPerSec -> {
-                val value = sp.getString(key, "60")
-                SystemProperties.set("windowsmgr.max_events_per_sec", value)
-            }
             DisplaySettings.sfRenderEngineBackend -> {
                 val value = sp.getString(key, "")
                 SystemProperties.set("debug.renderengine.backend", value)
