@@ -4,9 +4,9 @@
     <string name="title_activity_top_level">Treble</string>
     <string name="desc_activity_top_level">Device specific settings</string>
     <string name="continue_question">Continue?</string>
-    <string name="title_activity_updater">Updater</string>
-    <string name="update_not_found_title">Your system is up to date</string>
-    <string name="update_found_title">System update available</string>
+    <string name="title_activity_updater">treble</string>
+    <string name="update_not_found_title">YOUR SYSTEM IS UP TO DATE</string>
+    <string name="update_found_title">SYSTEM UPDATE AVAILABLE</string>
     <string name="checking_update_title">Checking for available update</string>
     <string name="update_found_button">Download and install</string>
     <string name="update_not_found_button">Check for update</string>
@@ -20,6 +20,9 @@
     <string name="downloading_update_title">Downloading system update</string>
     <string name="applying_update_title">Applying system update</string>
     <string name="applied_update_title">Update applied successfully</string>
+    <string name="manual_ota_button">Apply Manual OTA</string>
+    <string name="clear_ota_button">Clear OTA Files</string>
+    <string name="refresh_urls_button">Refresh URLs</string>
     <string name="prevent_exit_message">The update is still ongoing. Leaving the app now will stop it.\nDo you really want to exit now?</string>
     <string name="warning_dialog_title">Warning</string>
     <string name="magisk_exists_message">Magisk was detected! If you proceed with the update you may lose Magisk or the installation may fail!</string>
@@ -28,11 +31,14 @@
     <string name="toast_download_start">Downloading OTA package</string>
     <string name="toast_download_finished">OTA package downloaded</string>
     <string name="toast_download_fail">Failed downloading OTA package</string>
+    <string name="changelog_default">Changelog will appear here</string>
     <string name="toast_install_done">OTA image successfully installed</string>
     <string name="toast_install_fail">Failed installing OTA image</string>
     <string name="toast_delete_cache">Packages cache deleted</string>
     <string name="toast_reboot">Reboot your device to apply changes</string>
     <string name="update_props">Updating Props</string>
+    <string name="update_available_message">Update available: %1$s\nGSI: %2$s\nVariant: %3$s</string>
+    <string name="no_update_available_message">No update available for variant: %1$s</string>
     <string name="props_summary">Will bash from an URL, continue?</string>
     <string name="restart_system_ui">Restarting System UI</string>
 
