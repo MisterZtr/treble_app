@@ -869,110 +869,21 @@ class UpdaterActivity : AppCompatActivity() {
 
         runOnUiThread {
             update_title.text = getString(R.string.applying_update_title)
-            progress_bar.isIndeterminate = true
             progress_text.text = "Switching slot..."
             progress_container.visibility = View.VISIBLE
         }
 
-        // Check current slot
-        val currentSlot = SystemProperties.get("ro.boot.slot_suffix", "")
-        Log.d("PHH", "Current slot before switch: $currentSlot")
-        if (currentSlot.isEmpty()) {
-            Log.e("PHH", "Unable to determine current slot")
-            runOnUiThread {
-                progress_container.visibility = View.GONE
-                AlertDialog.Builder(this)
-                .setTitle(getString(R.string.error_dialog_title))
-                .setMessage("Unable to determine current slot")
-                .setPositiveButton(android.R.string.ok) { _, _ -> }
-                .show()
-                isUpdating = false
-                updateUiElements(false)
-            }
-            return
-        }
-
-        // Start phh-ota-switch service
         SystemProperties.set("ctl.start", "phh-ota-switch")
         Thread.sleep(1000)
 
-        // Wait for service to complete (up to 15 seconds)
-        val timeout = 15_000L
-        val startTime = System.currentTimeMillis()
-        var attempts = 0
-        val maxAttempts = 150 // 15 seconds / 100ms per attempt
-        while (!SystemProperties.get("init.svc.phh-ota-switch", "").equals("stopped") && attempts < maxAttempts) {
+        while (!SystemProperties.get("init.svc.phh-ota-switch", "").equals("stopped")) {
             val state = SystemProperties.get("init.svc.phh-ota-switch", "not-defined")
-            Log.d("PHH", "Current value of phh-ota-switch svc is $state (attempt $attempts)")
-            if (System.currentTimeMillis() - startTime > timeout) {
-                Log.e("PHH", "Timeout waiting for phh-ota-switch")
-                runOnUiThread {
-                    progress_container.visibility = View.GONE
-                    AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.error_dialog_title))
-                    .setMessage("Timeout switching slot")
-                    .setPositiveButton(android.R.string.ok) { _, _ -> }
-                    .show()
-                    isUpdating = false
-                    updateUiElements(false)
-                }
-                return
-            }
+            Log.d("PHH", "Current value of phh-ota-switch svc is $state")
             Thread.sleep(100)
-            attempts++
-        }
-
-        // Verify slot switch
-        val newSlot = SystemProperties.get("ro.boot.slot_suffix", "")
-        Log.d("PHH", "Slot after switch: $newSlot")
-        if (newSlot == currentSlot) {
-            Log.e("PHH", "Failed to switch slot: current slot ($newSlot) is same as before ($currentSlot)")
-            runOnUiThread {
-                progress_container.visibility = View.GONE
-                AlertDialog.Builder(this)
-                .setTitle(getString(R.string.error_dialog_title))
-                .setMessage("Failed to switch slot: slot did not change")
-                .setPositiveButton(android.R.string.ok) { _, _ -> }
-                .show()
-                isUpdating = false
-                updateUiElements(false)
-            }
-            return
-        }
-
-        // Clear /metadata/phh to prevent DSU Sideloader interference
-        try {
-            clearMetadataPhh()
-            Log.d("PHH", "Cleared /metadata/phh successfully")
-        } catch (e: Exception) {
-            Log.e("PHH", "Failed to clear /metadata/phh: ${e.message}", e)
-            runOnUiThread {
-                Toast.makeText(this, "Warning: Failed to clear DSU metadata: ${e.message}", Toast.LENGTH_LONG).show()
-            }
         }
 
         runOnUiThread {
-            progress_bar.isIndeterminate = false
             progress_text.text = "Switched slot. OTA finalized."
-        }
-    }
-
-    private fun clearMetadataPhh() {
-        val metadataDir = File("/metadata/phh")
-        if (metadataDir.exists() && metadataDir.isDirectory) {
-            metadataDir.listFiles()?.forEach { file ->
-                try {
-                    if (file.delete()) {
-                        Log.d("PHH", "Deleted file: ${file.absolutePath}")
-                    } else {
-                        Log.e("PHH", "Failed to delete file: ${file.absolutePath}")
-                    }
-                } catch (e: Exception) {
-                    Log.e("PHH", "Error deleting file ${file.absolutePath}: ${e.message}", e)
-                }
-            }
-        } else {
-            Log.d("PHH", "Directory /metadata/phh does not exist or is not a directory")
         }
     }
 
@@ -1021,7 +932,6 @@ class UpdaterActivity : AppCompatActivity() {
         val btn_manual_ota = findViewById<Button>(R.id.btn_manual_ota)
         val btn_clear_ota = findViewById<Button>(R.id.btn_clear_ota)
         val btn_refresh_urls = findViewById<Button>(R.id.btn_refresh_urls)
-        val update_title = findViewById<TextView>(R.id.txt_update_title)
 
         btn_update.visibility = View.INVISIBLE
         btn_manual_ota.visibility = View.INVISIBLE
@@ -1034,12 +944,6 @@ class UpdaterActivity : AppCompatActivity() {
                     var hasSuccess = false
                     try {
                         Log.d("PHH", "Manual OTA image install started")
-                        runOnUiThread {
-                            update_title.text = getString(R.string.preparing_update_title)
-                            progress_bar.isIndeterminate = true
-                            progress_text.text = "Preparing storage for OTA..."
-                            progress_container.visibility = View.VISIBLE
-                        }
                         prepareOTA()
                         Log.d("PHH", "New slot created")
                         Log.d("PHH", "Manual OTA image extracting")
@@ -1052,54 +956,34 @@ class UpdaterActivity : AppCompatActivity() {
                         hasSuccess = true
                     } catch (e: Exception) {
                         Log.e("PHH", "Failed applying manual OTA image. Error: ${e.message}", e)
-                        runOnUiThread {
-                            progress_container.visibility = View.GONE
-                            AlertDialog.Builder(this)
-                            .setTitle(getString(R.string.error_dialog_title))
-                            .setMessage("Failed to apply manual OTA: ${e.message}")
-                            .setPositiveButton(android.R.string.ok) { _, _ -> }
-                            .show()
-                            isUpdating = false
-                            updateUiElements(false)
-                            btn_manual_ota.visibility = View.VISIBLE
-                            btn_clear_ota.visibility = View.VISIBLE
-                            btn_refresh_urls.visibility = View.VISIBLE
-                        }
                     }
-                    if (hasSuccess) {
-                        runOnUiThread {
-                            AlertDialog.Builder(this)
-                            .setTitle(getString(R.string.title_activity_updater))
-                            .setMessage(getString(R.string.success_install_message))
-                            .setPositiveButton("Reboot now") { _, _ ->
-                                try {
-                                    Log.d("PHH", "Initiating device reboot")
-                                    Runtime.getRuntime().exec("reboot")
-                                } catch (e: Exception) {
-                                    Log.e("PHH", "Failed to initiate reboot: ${e.message}", e)
-                                    Toast.makeText(this, "Failed to reboot: ${e.message}", Toast.LENGTH_LONG).show()
-                                }
-                            }
-                            .setNegativeButton("Reboot later") { _, _ ->
-                                isUpdating = false
-                                updateUiElements(true)
-                                btn_manual_ota.visibility = View.VISIBLE
-                                btn_clear_ota.visibility = View.VISIBLE
-                                btn_refresh_urls.visibility = View.VISIBLE
-                            }
-                            .setCancelable(false)
-                            .show()
+                    runOnUiThread {
+                        val builder = AlertDialog.Builder(this)
+                        if (hasSuccess) {
+                            builder.setTitle(getString(R.string.title_activity_updater))
+                            builder.setMessage(getString(R.string.success_install_message))
+                        } else {
+                            progress_container.visibility = View.GONE
+                            builder.setTitle(getString(R.string.error_dialog_title))
+                            builder.setMessage(getString(R.string.failed_install_message))
                         }
+                        builder.setPositiveButton(android.R.string.ok) { _, _ -> }
+                        builder.show()
+                        isUpdating = false
+                        updateUiElements(true)
+                        btn_manual_ota.visibility = View.VISIBLE
+                        btn_clear_ota.visibility = View.VISIBLE
+                        btn_refresh_urls.visibility = View.VISIBLE
                     }
                 } ?: run {
                     Log.e("PHH", "Failed to open OTA file")
                     runOnUiThread {
                         progress_container.visibility = View.GONE
                         AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.error_dialog_title))
-                        .setMessage("Failed to open OTA file")
-                        .setPositiveButton(android.R.string.ok) { _, _ -> }
-                        .show()
+                            .setTitle(getString(R.string.error_dialog_title))
+                            .setMessage("Failed to open OTA file")
+                            .setPositiveButton(android.R.string.ok) { _, _ -> }
+                            .show()
                         isUpdating = false
                         updateUiElements(false)
                         btn_manual_ota.visibility = View.VISIBLE
@@ -1113,10 +997,10 @@ class UpdaterActivity : AppCompatActivity() {
             runOnUiThread {
                 progress_container.visibility = View.GONE
                 AlertDialog.Builder(this)
-                .setTitle(getString(R.string.error_dialog_title))
-                .setMessage("Error processing OTA file: ${e.message}")
-                .setPositiveButton(android.R.string.ok) { _, _ -> }
-                .show()
+                    .setTitle(getString(R.string.error_dialog_title))
+                    .setMessage("Error processing OTA file: ${e.message}")
+                    .setPositiveButton(android.R.string.ok) { _, _ -> }
+                    .show()
                 isUpdating = false
                 updateUiElements(false)
                 btn_manual_ota.visibility = View.VISIBLE
