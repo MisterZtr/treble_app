@@ -225,11 +225,7 @@ class ImsSettingsFragment : PreferenceFragment() {
                 "https://treble.phh.me/stable/ims-caf-s$signSuffix.apk",
                  "Qualcomm S+ vendor"
             )
-            else ->
-                Pair(
-                    "https://github.com/ChonDoit/treble_ims/releases/download/A14-QPR3/floss-ims-19.apk",
-                     "FLOSS IMS -WIP-"
-                )
+            else -> Pair("https://treble.phh.me/floss-ims-resigned.apk", "Floss IMS (EXPERIMENTAL)")
         }
     }
 
