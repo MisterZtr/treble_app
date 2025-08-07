@@ -48,7 +48,6 @@ class UpdaterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_updater)
 
-        // Configura a Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
@@ -56,11 +55,9 @@ class UpdaterActivity : AppCompatActivity() {
             setTitle(R.string.title_activity_updater)
         }
 
-        // Inicializar SharedPreferences
         prefs = getSharedPreferences("ota_prefs", MODE_PRIVATE)
         OTA_JSON_URL = prefs?.getString("ota_json_url", OTA_JSON_URL) ?: OTA_JSON_URL
 
-        // Inicializar UI
         updateUiElements(false)
 
         val btn_update = findViewById<Button>(R.id.btn_update)
@@ -114,7 +111,6 @@ class UpdaterActivity : AppCompatActivity() {
             }
         }
 
-        // Chamar checkUpdate apenas se não estiver atualizando
         if (!isUpdating) {
             checkUpdate()
         }
@@ -127,52 +123,44 @@ class UpdaterActivity : AppCompatActivity() {
 
     private fun clearOtaFiles() {
         AlertDialog.Builder(this)
-        .setTitle(getString(R.string.delete_ota_message))
-        .setMessage("This will delete all temporary OTA files and system OTA images. Continue?")
-        .setPositiveButton(android.R.string.ok) { _, _ ->
-            try {
-                // Delete local temporary OTA files
-                val otaFiles = cacheDir.listFiles { file -> file.name.startsWith("ota") && file.name.endsWith(".xz") }
-                var deletedCount = 0
-                otaFiles?.forEach { file ->
-                    if (file.delete()) {
-                        deletedCount++
-                        Log.d("PHH", "Deleted OTA file: ${file.absolutePath}")
-                    } else {
-                        Log.e("PHH", "Failed to delete OTA file: ${file.absolutePath}")
+            .setTitle(getString(R.string.delete_ota_message))
+            .setMessage("This will delete all temporary OTA files. Continue?")
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                try {
+                    val otaFiles = cacheDir.listFiles { file -> file.name.startsWith("ota") && file.name.endsWith(".xz") }
+                    var deletedCount = 0
+                    otaFiles?.forEach { file ->
+                        if (file.delete()) {
+                            deletedCount++
+                            Log.d("PHH", "Deleted OTA file: ${file.absolutePath}")
+                        } else {
+                            Log.e("PHH", "Failed to delete OTA file: ${file.absolutePath}")
+                        }
                     }
+                    Toast.makeText(this, "Deleted $deletedCount OTA files", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Log.e("PHH", "Error deleting OTA files: ${e.message}", e)
+                    Toast.makeText(this, "Failed to delete OTA files: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-                // Delete system OTA images
-                SystemProperties.set("sys.phh.uninstall-ota", "true")
-                Toast.makeText(this, "Deleted $deletedCount OTA files", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Log.e("PHH", "Error deleting OTA files: ${e.message}", e)
-                Toast.makeText(this, "Failed to delete OTA files: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-        }
-        .setNegativeButton(android.R.string.cancel) { _, _ -> }
-        .show()
+            .setNegativeButton(android.R.string.cancel) { _, _ -> }
+            .show()
     }
 
     private fun refreshUrls() {
-        // Usar a URL definida na device tree
         OTA_JSON_URL = SystemProperties.get("ro.system.ota.json_url") ?: ""
 
-        // Verificar se a URL está vazia
         if (OTA_JSON_URL.isEmpty()) {
             Log.e("PHH", "Nenhuma URL de OTA configurada")
             Toast.makeText(this, "Nenhuma URL de OTA configurada", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Salvar a URL em SharedPreferences
         prefs?.edit()?.putString("ota_json_url", OTA_JSON_URL)?.apply()
         Log.d("PHH", "Usando OTA_JSON_URL: $OTA_JSON_URL")
 
-        // Mostrar feedback ao usuário
         Toast.makeText(this, "Refreshing OTA URLs...", Toast.LENGTH_SHORT).show()
 
-        // Iniciar verificação de atualização
         isUpdating = true
         checkUpdate()
     }
@@ -200,6 +188,22 @@ class UpdaterActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_delete_ota -> {
+                Log.e("PHH", "Initiating OTA uninstallation")
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(getString(R.string.warning_dialog_title))
+                builder.setMessage("This will uninstall the OTA and restore the original system state. Continue?")
+                builder.setPositiveButton(android.R.string.yes) { _, _ ->
+                    Log.e("PHH", "OTA uninstallation in progress")
+                    SystemProperties.set("sys.phh.uninstall-ota", "true")
+                }
+                builder.setNegativeButton(android.R.string.no) { _, _ ->
+                    Log.e("PHH", "OTA uninstallation canceled")
+                }
+                builder.show()
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
 
