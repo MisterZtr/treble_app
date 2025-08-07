@@ -29,6 +29,7 @@ object SamsungSettings : Settings {
     val brokenFingerprint = "key_samsung_broken_fingerprint"
     val backlightMultiplier = "key_samsung_backlight_multiplier"
     val cameraIds = "key_samsung_camera_ids"
+    val restore5G = "key_samsung_force_restore_5g"
     val fodSingleClick = "key_samsung_fod_single_click"
     val flashStrength = "key_samsung_flash_strength"
     val disableBackMic = "key_samsung_disable_back_mic"

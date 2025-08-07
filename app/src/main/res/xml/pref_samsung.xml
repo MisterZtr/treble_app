@@ -94,6 +94,12 @@
             android:key="key_samsung_backlight_multiplier"
             android:title="@string/backlightsamsung"
             android:inputType="number" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_samsung_force_restore_5g"
+            android:title="Forcibly restore 5G"
+            android:summary="Restores default 5G behaviour when any option with 5G is enabled.\nTurn on if 5G suddenly isn't working after forcing other network modes (such as 4G, 3G or 2G)." />
     </PreferenceCategory>
 
 </PreferenceScreen>
