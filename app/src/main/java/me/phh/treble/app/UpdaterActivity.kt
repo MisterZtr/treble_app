@@ -127,28 +127,31 @@ class UpdaterActivity : AppCompatActivity() {
 
     private fun clearOtaFiles() {
         AlertDialog.Builder(this)
-            .setTitle(getString(R.string.delete_ota_message))
-            .setMessage("This will delete all temporary OTA files. Continue?")
-            .setPositiveButton(android.R.string.ok) { _, _ ->
-                try {
-                    val otaFiles = cacheDir.listFiles { file -> file.name.startsWith("ota") && file.name.endsWith(".xz") }
-                    var deletedCount = 0
-                    otaFiles?.forEach { file ->
-                        if (file.delete()) {
-                            deletedCount++
-                            Log.d("PHH", "Deleted OTA file: ${file.absolutePath}")
-                        } else {
-                            Log.e("PHH", "Failed to delete OTA file: ${file.absolutePath}")
-                        }
+        .setTitle(getString(R.string.delete_ota_message))
+        .setMessage("This will delete all temporary OTA files and system OTA images. Continue?")
+        .setPositiveButton(android.R.string.ok) { _, _ ->
+            try {
+                // Delete local temporary OTA files
+                val otaFiles = cacheDir.listFiles { file -> file.name.startsWith("ota") && file.name.endsWith(".xz") }
+                var deletedCount = 0
+                otaFiles?.forEach { file ->
+                    if (file.delete()) {
+                        deletedCount++
+                        Log.d("PHH", "Deleted OTA file: ${file.absolutePath}")
+                    } else {
+                        Log.e("PHH", "Failed to delete OTA file: ${file.absolutePath}")
                     }
-                    Toast.makeText(this, "Deleted $deletedCount OTA files", Toast.LENGTH_SHORT).show()
-                } catch (e: Exception) {
-                    Log.e("PHH", "Error deleting OTA files: ${e.message}", e)
-                    Toast.makeText(this, "Failed to delete OTA files: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
+                // Delete system OTA images
+                SystemProperties.set("sys.phh.uninstall-ota", "true")
+                Toast.makeText(this, "Deleted $deletedCount OTA files", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Log.e("PHH", "Error deleting OTA files: ${e.message}", e)
+                Toast.makeText(this, "Failed to delete OTA files: ${e.message}", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton(android.R.string.cancel) { _, _ -> }
-            .show()
+        }
+        .setNegativeButton(android.R.string.cancel) { _, _ -> }
+        .show()
     }
 
     private fun refreshUrls() {
