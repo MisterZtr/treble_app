@@ -171,7 +171,7 @@
         <Preference
             android:layout="@layout/preference_custom_head"
             android:key="telephony_settings"
-            android:title="@string/title_display_settings"
+            android:title="@string/title_telephony_settings"
             android:summary="@string/summary_telephony"
             android:icon="@drawable/telephony" />
 
