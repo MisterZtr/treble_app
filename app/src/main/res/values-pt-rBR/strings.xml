@@ -250,7 +250,7 @@
     <string name="restart_ril">Reiniciar RIL automaticamente</string>
 
     <string name="patch_smsc">Corrigir SMSC</string>
-    <string name="pachsmsc_summary">Se você não consegue enviar mensagens, principalmente em dispositivos Samsung, desative a correção de SMSC</string>
+    <string name="pachsmsc_summary">Se você não consegue enviar mensagens, principalmente em dispositivos Samsung, desative a correção de SMSC, IGNORE ESSA OPÇÃO</string>
 
     <string name="simcard">Remover subsistema de telefonia</string>
     <string name="simcart_summary">Para dispositivos sem cartão SIM</string>

@@ -246,7 +246,7 @@
     <string name="restart_ril">Automatically restart RIL</string>
 
     <string name="patch_smsc">Patch SMSC</string>
-    <string name="pachsmsc_summary">If you cant send messages, primarily on Samsung devices, turn off SMSC patching</string>
+    <string name="pachsmsc_summary">If you cant send messages, primarily on Samsung devices, turn off SMSC patching, IGNORE THIS OPTION</string>
 
     <string name="simcard">Remove Telephony Subsystem</string>
     <string name="simcart_summary">For devices without simcard</string>
