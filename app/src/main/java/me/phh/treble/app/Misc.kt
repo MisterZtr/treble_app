@@ -29,6 +29,10 @@ object Misc: EntryStartup {
                 val value = sp.getBoolean(key, false)
                 safeSetprop("persist.sys.phh.securize", if (value) "1" else "0")
             }
+            MiscSettings.treatVirtualSensorsAsReal -> {
+                val value = sp.getBoolean(key, false)
+                SystemProperties.set("persist.sys.phh.virtual_sensors_are_real", if (value) "true" else "false")
+            }
             MiscSettings.launcher3 -> {
                 val value = sp.getBoolean(key, false)
                 safeSetprop("persist.sys.phh.launcher3", if (value) "true" else "false")

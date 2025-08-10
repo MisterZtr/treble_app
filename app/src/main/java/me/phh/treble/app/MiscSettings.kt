@@ -15,6 +15,7 @@ import java.io.File
 object MiscSettings : Settings {
     val biometricstrong = "key_misc_biometricstrong"
     val securize = "key_misc_securize"
+    val treatVirtualSensorsAsReal = "key_misc_treat_virtual_sensors_as_real"
     val launcher3 = "key_misc_launcher3"
     val disableSaeUpgrade = "key_misc_disable_sae_upgrade"
     val storageFUSE = "key_misc_storage_fuse"
