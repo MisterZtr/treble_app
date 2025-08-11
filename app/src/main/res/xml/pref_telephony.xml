@@ -5,13 +5,6 @@
         <PreferenceCategory
             android:title="@string/cameratitle"
             android:layout="@layout/preference_category_custom">
-                <EditTextPreference
-                    android:layout="@layout/preference_edittext_custom"
-                    android:key="key_telephony_smsc"
-                    android:title="@string/smsc"
-                    android:inputType="text"
-                    android:summary="Default" />
-
                 <ListPreference
                     android:layout="@layout/preference_list_custom"
                     android:defaultValue="default"

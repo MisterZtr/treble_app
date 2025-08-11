@@ -27,7 +27,6 @@ object TelephonySettings : Settings {
     val removeTelephony = "key_telephony_removetelephony"
     val simCount = "key_telephony_simcount"
     val resetSimCount = "key_telephony_reset_simcount"
-    val smsc = "key_telephony_smsc"
     var patchSmsc = "key_misc_patch_smsc"
     val restrictednetworking = "key_telephony_restricted_networking"
 
@@ -50,10 +49,6 @@ class TelephonySettingsFragment : PreferenceFragment() {
             }
 
             findPreference(TelephonySettings.simCount)?.let {
-                SettingsActivity.bindPreferenceSummaryToValue(it)
-            }
-
-            findPreference(TelephonySettings.smsc)?.let {
                 SettingsActivity.bindPreferenceSummaryToValue(it)
             }
 

@@ -31,7 +31,7 @@ object Misc: EntryStartup {
             }
             MiscSettings.treatVirtualSensorsAsReal -> {
                 val value = sp.getBoolean(key, false)
-                SystemProperties.set("persist.sys.phh.virtual_sensors_are_real", if (value) "true" else "false")
+                SystemProperties.set("persist.sys.phh.virtual_sensors_are_real", if (value) "1" else "0")
             }
             MiscSettings.launcher3 -> {
                 val value = sp.getBoolean(key, false)

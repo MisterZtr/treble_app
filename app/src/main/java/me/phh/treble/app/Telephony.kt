@@ -27,11 +27,6 @@ object Telephony: EntryStartup {
                 SystemProperties.set("persist.sys.phh.sim_count", value)
                 Log.d("PHH", "Setting SIM count to $value")
             }
-            TelephonySettings.smsc -> {
-                val value = sp.getString(key, "")
-                SystemProperties.set("persist.sys.phh.smsc", value)
-                Log.d("PHH", "Setting SMSC to $value")
-            }
             TelephonySettings.patchSmsc -> {
                 val value = sp.getBoolean(key, true)
                 SystemProperties.set("persist.sys.phh.patch_smsc", if (value) "true" else "false")
