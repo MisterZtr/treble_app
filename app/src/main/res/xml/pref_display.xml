@@ -37,6 +37,27 @@
         <SwitchPreference
             android:defaultValue="false"
             android:layout="@layout/preference_switch_custom"
+            android:key="key_display_sf_latch_unsignaled"
+            android:title="@string/sf_latch_unsignaled_title"
+            android:summary="@string/sf_latch_unsignaled_summary" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:layout="@layout/preference_switch_custom"
+            android:key="key_display_sf_auto_latch_unsignaled"
+            android:title="@string/sf_auto_latch_unsignaled_title"
+            android:summary="@string/sf_auto_latch_unsignaled_summary" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:layout="@layout/preference_switch_custom"
+            android:key="key_display_sf_disable_backpressure"
+            android:title="@string/sf_disable_backpressure_title"
+            android:summary="@string/sf_disable_backpressure_summary" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:layout="@layout/preference_switch_custom"
             android:key="key_display_no_hwcomposer"
             android:title="@string/hw_overlay"
             android:summary="@string/hw_overlaysummary" />

@@ -399,4 +399,13 @@
 
     <string name="fingerprint_real_title">Treat virtual sensors as real</string>
     <string name="fingerprint_real_summary">Treat all virtual fingerprint sensors as real\nRequires a reboot</string>
+
+    <string name="sf_latch_unsignaled_title">Latch Unsigned Buffers</string>
+    <string name="sf_latch_unsignaled_summary">Forces latch of all buffers in SurfaceFlinger when enabled.</string>
+
+    <string name="sf_auto_latch_unsignaled_title">Auto Latch Unsigned</string>
+    <string name="sf_auto_latch_unsignaled_summary">Automatically latch single-layer buffers in SurfaceFlinger when enabled.</string>
+
+    <string name="sf_disable_backpressure_title">Disable Backpressure</string>
+    <string name="sf_disable_backpressure_summary">Disables SurfaceFlinger backpressure propagation to improve responsiveness.</string>
 </resources>
