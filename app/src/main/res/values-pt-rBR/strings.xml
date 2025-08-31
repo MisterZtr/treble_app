@@ -405,13 +405,13 @@
     <string name="fingerprint_real_title">Trate os sensores virtuais como reais</string>
     <string name="fingerprint_real_summary">Tratar todos os sensores de impressão digital virtuais como reais\nRequer reinicialização</string>
 
-    <string name="sf_latch_unsignaled_title_pt">Ligar Buffers Não Assinados</string>
-    <string name="sf_latch_unsignaled_summary_pt">Força o latch de todos os buffers no SurfaceFlinger quando habilitado.</string>
+    <string name="sf_latch_unsignaled_title">Ligar Buffers Não Assinados</string>
+    <string name="sf_latch_unsignaled_summary">Força o latch de todos os buffers no SurfaceFlinger quando habilitado.</string>
 
-    <string name="sf_auto_latch_unsignaled_title_pt">Latch Automático Não Assinado</string>
-    <string name="sf_auto_latch_unsignaled_summary_pt">Faz o latch automático de buffers de camada única no SurfaceFlinger quando habilitado.</string>
+    <string name="sf_auto_latch_unsignaled_title">Latch Automático Não Assinado</string>
+    <string name="sf_auto_latch_unsignaled_summary">Faz o latch automático de buffers de camada única no SurfaceFlinger quando habilitado.</string>
 
-    <string name="sf_disable_backpressure_title_pt">Desativar Backpressure</string>
-    <string name="sf_disable_backpressure_summary_pt">Desativa a propagação de backpressure do SurfaceFlinger para melhorar a responsividade.</string>
+    <string name="sf_disable_backpressure_title">Desativar Backpressure</string>
+    <string name="sf_disable_backpressure_summary">Desativa a propagação de backpressure do SurfaceFlinger para melhorar a responsividade.</string>
 
 </resources>
