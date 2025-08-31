@@ -21,7 +21,7 @@
   <array name="pref_display_sf_blur_algorithm">
     <item>"Desativado"</item>
     <item>"Gaussiano"</item>
-    <item>"Kawase (Padrão)"</item>
+    <item>"Kawase"</item>
     <item>"Kawase2</item>
 
   </array>
@@ -32,6 +32,14 @@
     <item>"SkiaGL (com threads)"</item>
     <item>"SkiaVK"</item>
     <item>"SkiaVK (com threads)"</item>
+  </array>
+
+  <array name="pref_display_sf_renderengine_backend_values">
+    <item>""</item>
+    <item>"skiagl"</item>
+    <item>"skiaglthreaded"</item>
+    <item>"skiavk"</item>
+    <item>"skiavkthreaded"</item>
   </array>
 
   <array name="pref_display_max_events_per_sec_values">
