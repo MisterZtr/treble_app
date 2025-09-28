@@ -41,21 +41,6 @@
             android:key="key_misc_storage_fuse"
             android:title="@string/misc5"
             android:summary="@string/msic5_s" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/oneplus_display"
-        android:layout="@layout/preference_category_custom">
-        <SwitchPreference
-            android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
-            android:key="key_misc_unihertz_dt2w"
-            android:title="@string/displaysamsung_1" />
-        <SwitchPreference
-            android:layout="@layout/preference_switch_custom"
-            android:defaultValue="false"
-            android:key="key_misc_disable_display_doze_suspend"
-            android:title="@string/displaysamsung_2" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
@@ -74,6 +59,21 @@
             android:key="key_misc_disable_expensive_rendering_mode"
             android:title="@string/displaysamsung_3"
             android:summary="@string/displaysamsung_3s" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/oneplus_display"
+        android:layout="@layout/preference_category_custom">
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_misc_unihertz_dt2w"
+            android:title="@string/displaysamsung_1" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_misc_disable_display_doze_suspend"
+            android:title="@string/displaysamsung_2" />
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
