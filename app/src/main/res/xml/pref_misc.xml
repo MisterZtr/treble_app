@@ -59,6 +59,18 @@
         <SwitchPreference
             android:layout="@layout/preference_switch_custom"
             android:defaultValue="false"
+            android:key="key_misc_activity_anim_perf_override"
+            android:title="Activity Anim Perf Override"
+            android:summary="Forces the use of performance optimization in activity animations" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
+            android:key="key_misc_lmk_tweaks"
+            android:title="LMK Tweaks"
+            android:summary="Apply tweaks to Low Memory Killer to improve stability and prevent aggressive shutdowns" />
+        <SwitchPreference
+            android:layout="@layout/preference_switch_custom"
+            android:defaultValue="false"
             android:key="key_misc_disable_expensive_rendering_mode"
             android:title="@string/displaysamsung_3"
             android:summary="@string/displaysamsung_3s" />

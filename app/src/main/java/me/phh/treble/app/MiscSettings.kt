@@ -23,6 +23,10 @@ object MiscSettings : Settings {
     val disableExpensiveRenderingMode = "key_misc_disable_expensive_rendering_mode"
     val unihertzdt2w = "key_misc_unihertz_dt2w"
     val dt2w = "key_misc_dt2w"
+    val activityAnimPerfOverride = "key_misc_activity_anim_perf_override"
+    val lmkTweaks = "key_misc_lmk_tweaks"
+
+
 
     override fun enabled(context: Context): Boolean = true
     fun isRoot() = File(Tools.phhsu).exists()

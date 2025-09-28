@@ -50,6 +50,27 @@ object Misc: EntryStartup {
                 val value = sp.getBoolean(key, true)
                 safeSetprop("persist.sys.phh.disable_display_doze_suspend", if (value) "true" else "false")
             }
+            MiscSettings.activityAnimPerfOverride -> {
+                val value = sp.getBoolean(key, false)
+                safeSetprop("persist.sys.activity_anim_perf_override", if (value) "true" else "false")
+            }
+            MiscSettings.lmkTweaks -> {
+                val value = sp.getBoolean(key, false)
+                if (value) {
+                    safeSetprop("ro.lmk.kill_timeout_ms", "1000")
+                    safeSetprop("ro.lmk.low", "800")
+                    safeSetprop("ro.lmk.medium", "700")
+                    safeSetprop("ro.lmk.kill_heaviest_task", "false")
+                    safeSetprop("ro.lmk.critical_upgrade", "false")
+                } else {
+                    safeSetprop("ro.lmk.kill_timeout_ms", "")
+                    safeSetprop("ro.lmk.low", "")
+                    safeSetprop("ro.lmk.medium", "")
+                    safeSetprop("ro.lmk.kill_heaviest_task", "")
+                    safeSetprop("ro.lmk.critical_upgrade", "")
+                }
+            }
+
             MiscSettings.disableExpensiveRenderingMode -> {
                 val value = sp.getBoolean(key, false)
                 safeSetprop("persist.sys.phh.disable_expensive_rendering_mode", if (value) "1" else "0")
