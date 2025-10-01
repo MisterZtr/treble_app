@@ -24,7 +24,7 @@ object OppoSettings : Settings {
     val dcDiming = "key_oppo_dc_diming"
 
     override fun enabled(context: Context): Boolean {
-        val isOppo = Tools.deviceId.startsWith("RMX")
+        val isOppo = Tools.deviceId.startsWith("CPH")
         Log.d("PHH", "OppoSettings enabled() called, isOppo = $isOppo")
         return isOppo
     }
