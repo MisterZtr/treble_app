@@ -1,9 +1,9 @@
-#!/bin/bash
+#/bin/bash
 
 set -e
 
-if [ -d /usr/lib/jvm/java-17-openjdk-amd64/bin/ ];then
-export PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin/:$PATH
+if [ -d /usr/lib/jvm/java-21-openjdk/bin/ ];then
+export PATH=/usr/lib/jvm/java-21-openjdk/bin/:$PATH
 fi
 
 if [ -z "$ANDROID_HOME" ];then
