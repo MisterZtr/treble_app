@@ -21,20 +21,6 @@
         </Preference>
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@@string/title_group"
-        android:layout="@layout/preference_category_custom">
-        <Preference
-            android:layout="@layout/preference_custom_head"
-            android:title="@@string/title_gsi_group"
-            android:icon="@drawable/user"
-            android:summary="@string/summary_gsi_group">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://t.me/acgsi_chat" />
-        </Preference>
-    </PreferenceCategory>
-
     <Preference
         android:layout="@layout/preference_space"
         android:selectable="false"

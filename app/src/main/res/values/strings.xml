@@ -53,10 +53,6 @@
     <string name="title_misc">MISCELLANEOUS</string>
     <string name="title_debugging">DEBUGGING</string>
 
-    <!-- Preferências -->
-    <string name="title_gsi_group">GSI Support Group</string>
-    <string name="summary_gsi_group">Join</string>
-
     <string name="title_asus">Asus settings</string>
     <string name="title_mydevice">My device</string>
     <string name="title_mediatek">Mediatek settings</string>
